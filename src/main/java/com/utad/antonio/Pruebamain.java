@@ -1,10 +1,11 @@
 package com.utad.antonio;
 
-import java.util.Properties;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 
-/**
- * Created by aalcocer on 11/01/16.
- */
+import java.util.Properties;
+import java.util.UUID;
+
+
 public class Pruebamain {
     static String serverKafka = "localhost:9092";
     static String KafakSerializerClass = "kafka.serializer.StringEncoder";
@@ -34,13 +35,18 @@ public class Pruebamain {
         propsConsumer.put("session.timeout.ms", consumerSesionTimeout);
         propsConsumer.put("key.deserializer", KafakKeyDeserializer);
         propsConsumer.put("value.deserializer", KafakValueDeserializer);
+        propsConsumer.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        propsConsumer.put(ConsumerConfig.GROUP_ID_CONFIG, UUID.randomUUID().toString());
+        propsConsumer.put(ConsumerConfig.CLIENT_ID_CONFIG, "your_client_id");
 
 
-
+        System.out.println("Empieza el programa");
         ProducerExample miproducer = new ProducerExample(events,blocks1,propsProcuct);
         miproducer.generate();
         System.out.println("ahora a consumir");
         consumerExample miconsumidor=new consumerExample(propsConsumer);
         miconsumidor.consuming();
+        System.out.println("Acaba el programa");
+
     }
 }

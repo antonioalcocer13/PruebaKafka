@@ -22,7 +22,7 @@ public class consumerExample {
     public void consuming() {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
-        consumer.subscribe(Arrays.asList("test1"));
+        consumer.subscribe(Arrays.asList("test2"));
         while (loop) {
 
             ConsumerRecords<String, String> records = consumer.poll(400);

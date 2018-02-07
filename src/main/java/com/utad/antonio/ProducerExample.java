@@ -38,7 +38,7 @@ public class ProducerExample {
                 String msg = runtime + "," + (50 + nBlocks) + "," + nEvents + "," + rnd.nextInt(1000);
                 int key = rnd.nextInt(100);
 
-                ProducerRecord<String, String> data = new ProducerRecord<String, String>("test1",
+                ProducerRecord<String, String> data = new ProducerRecord<String, String>("test2",
                         Integer.toString(key), msg);
                 producer.send(data);
             }
